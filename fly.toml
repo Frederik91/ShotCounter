@@ -1,0 +1,12 @@
+app = "example-app-name"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[http_service]
+  internal_port = 8080
+  force_https   = true
+
+[[mounts]]
+  source      = "data"
+  destination = "/data"
