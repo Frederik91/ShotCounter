@@ -30,6 +30,11 @@ def init_db():
     conn.commit()
     conn.close()
 
+@app.before_first_request
+def _init_db_if_needed():
+    """Ensure the database schema exists before handling requests."""
+    init_db()
+
 @app.route('/')
 def index():
     conn = get_db_connection()
