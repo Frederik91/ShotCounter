@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<form method="post" action="{{ url_for('add_player') }}" class="row g-3 mb-4">
+    <div class="col-auto">
+        <input type="text" name="name" class="form-control" placeholder="Player name" required>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Add Player</button>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Shots</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for player in players %}
+    <tr>
+        <td>{{ player.name }}</td>
+        <td>{{ player.shots }}</td>
+        <td>
+            <form method="post" action="{{ url_for('increment', player_id=player.id) }}">
+                <button type="submit" class="btn btn-success btn-sm">+1 Shot</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
